@@ -1,0 +1,16 @@
+name: BiliBili每日任务
+on:
+  workflow_dispatch: # 允许手动点按钮运行
+  schedule:
+    - cron: '30 22 * * *' # 每天北京时间早上6:30运行 (UTC时间22:30)
+
+jobs:
+  run-bilibili-tool:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 运行 BiliBiliTool Pro
+        # 直接使用官方 Docker 镜像，无需编译，速度最快
+        run: |
+          docker run --rm \
+          -e Ray_BiliBiliCookies__1="${{ secrets.COOKIE_STR }}" \
+          ghcr.io/raywangqvq/bilibili_tool_pro
