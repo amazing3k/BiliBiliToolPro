@@ -8,10 +8,10 @@ on:
 jobs:
   run-bilibili-tool:
     runs-on: ubuntu-latest
-    steps:
+steps:
       - name: 运行 BiliBiliTool Pro
         run: |
           docker run --rm \
           -e Ray_BiliBiliCookies__0="${{ secrets.COOKIE_STR }}" \
-          ghcr.io/raywangqvq/bilibili_tool_pro \
-          --runTasks=Daily
+          -e Ray_RunTasks="Daily" \
+          ghcr.io/raywangqvq/bilibili_tool_pro
